@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head start -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebEzy</title>
+    <link rel="icon" type="image/png" sizes="40x40" href="favicon.png">
+    <!-- Style script and Fonts -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- JS libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+
+</head>
+<!-- Head end -->
+
+<body>
+
+    <!-- Header Start -->
+    <header>
+        <div class="logo">
+            <img src="logo.svg" alt="Logo">
+        </div>
+        <h1>#Think.<span>Visualize.</span>Code</h1></br>
+    </header>
+    <!-- Header End -->
+
+    <!-- Code Editor and HTML Viewer -->
+    <div class="main">
+        <div id="code-editor"></div>
+        <iframe id="HTML-viewer" src="viewer.html"></iframe>
+    </div>
+
+    <!-- Footer Start -->
+    <footer class="footer">
+        <!-- Footer main content  -->
+        <div class="footer-content">
+
+            <div class="footer-section about">
+                <h1>#Think.<span>Visualize.</span>Code</h1></br>
+                <p>WebEzy is a no-nonsense real-time HTML editor aimed at beginners allowing them to watch how their
+                    webpage turns out as they code.</p>
+            </div>
+
+            <div class="footer-section links">
+                <p>Quick References</p>
+                <ul class="res-list">
+                    <a href="https://www.w3schools.com/html/default.asp" target="_blank">
+                        <li>W3School</li>
+                    </a>
+                    <a href="https://css-tricks.com/" target="_blank">
+                        <li>CSS Tricks</li>
+                    </a>
+                    <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML" target="_blank">
+                        <li>MDN Web Docs</li>
+                    </a>
+                </ul>
+            </div>
+
+            <div class="footer-section links">
+                <p>Resources</p>
+                <ul class="res-list">
+                    <a href="https://getbootstrap.com/" target="_blank">
+                        <li>Bootstrap</li>
+                    </a>
+                    <a href="https://fontawesome.com/start" target="_blank">
+                        <li>Fontawsome</li>
+                    </a>
+                    <a href="https://icons8.com/" target="_blank">
+                        <li>Icons8</li>
+                    </a>
+                </ul>
+            </div>
+
+            <div class="footer-section links">
+                <p>YouTube</p>
+                <ul class="res-list">
+                    <a href="https://www.youtube.com/watch?v=UB1O30fR-EE&list=PLillGF-RfqbZTASqIqdvm1R5mLrQq79CU"
+                        target="_blank">
+                        <li>Traversy Media</li>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=Mp0f0zTPLec&list=PL081AC329706B2953" target="_blank">
+                        <li>The new boston</li>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=TKYsuU86-DQ&list=PL0eyrZgxdwhwNC5ppZo_dYGVjerQY3xYU"
+                        target="_blank">
+                        <li>Mmtuts</li>
+                    </a>
+                </ul>
+            </div>
+
+            <div class="footer-section follow">
+                <p>Follow me on</p>
+                <a href="https://github.com/Souradeep028" target="_blank"><i class="fa fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/souradeepkrbasu/" target="_blank"><i
+                        class="fa fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/souradeep_283/" target="_blank"><i class="fa fa-instagram"></i></a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <small>&copy; Copyright 2019 | Souradeep Kr. Basu</small>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Scripts -->
+    <script>
+
+        function update() {
+            let view = document.getElementById('HTML-viewer').contentWindow.document;
+            view.open();
+            view.write(editor.getValue());
+            view.close();
+        }
+
+        function setEditor() {
+            window.editor = ace.edit("code-editor");
+            editor.setTheme("ace/theme/twilight");
+            editor.session.setMode("ace/mode/html");
+
+            editor.getSession().on('change', function () {
+
+                if (editor.getValue() != "") {
+                    document.getElementById('HTML-viewer').style.backgroundColor = "#ffff";
+                    update();
+                }
+                else {
+                    document.getElementById('HTML-viewer').contentWindow.document.location.href = "viewer.html";
+                }
+
+            });
+        }
+
+        setEditor();
+
+    </script>
+
+</body>
+
+</html>
